@@ -3,24 +3,7 @@ import { Grid } from "@material-ui/core";
 import Product from "./Product/Product";
 import useStyles from "./styles";
 
-const products = [
-  {
-    id: 1,
-    name: "Skateboard",
-    description: "8.6 inch",
-    price: "$65",
-    image: "",
-  },
-  {
-    id: 2,
-    name: "Shirt",
-    description: "Fortress Logo",
-    price: "$25",
-    image: "",
-  },
-];
-
-const Products = () => {
+const Products = ({ products }) => {
   const classes = useStyles();
 
   return (
