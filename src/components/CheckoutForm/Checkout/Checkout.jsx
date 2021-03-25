@@ -28,13 +28,13 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const refreshForm = () => setActiveStep(0);
 
   useEffect(() => {
     if (cart.id) {
       const generateToken = async () => {
         try {
           const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
-
           setCheckoutToken(token);
         } catch {
           if (activeStep !== steps.length) history.push('/');
@@ -43,11 +43,11 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
 
       generateToken();
     }
-  }, [cart]);
+  }, [activeStep, cart, history]);
 
   const test = (data) => {
     setShippingData(data);
-    console.log(data);
+    // console.log(data);
     nextStep();
   };
 
@@ -77,8 +77,8 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
       <>
         <Typography variant="h5">Error: {error}</Typography>
         <br />
-        <Button component={Link} variant="outlined" type="button" to="/">
-          Back to home
+        <Button variant="outlined" type="button" onClick={() => refreshForm()}>
+          Go Back
         </Button>
       </>
     );
