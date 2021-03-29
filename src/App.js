@@ -6,7 +6,7 @@ import { Navbar, Products, Cart, Checkout } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
@@ -57,7 +57,7 @@ const App = () => {
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
 
       setOrder(incomingOrder);
-      // console.log(order);
+
       refreshCart();
     } catch (error) {
       setErrorMessage(error.data.error.message);
@@ -69,13 +69,13 @@ const App = () => {
     fetchCart();
   }, []);
 
-  // const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   return (
     <Router>
       <div style={{ display: 'flex' }}>
         <CssBaseline />
-        <Navbar totalItems={cart.total_items} />
+        <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
