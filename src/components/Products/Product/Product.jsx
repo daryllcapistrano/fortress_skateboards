@@ -10,14 +10,14 @@ const Product = ({ product, onAddToCart }) => {
   const handleAddToCart = () => onAddToCart(product.id, 1);
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={0}>
       <CardMedia className={classes.media} image={product.media.source} title={product.name} />
       <CardContent>
         <div className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom className={classes.productName} variant="h5" component="h2">
             {product.name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom className={classes.productPrice} variant="h5" component="h2">
             ${product.price.formatted}
           </Typography>
         </div>
