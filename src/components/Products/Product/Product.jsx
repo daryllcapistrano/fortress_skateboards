@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
@@ -21,6 +22,7 @@ const Product = ({ product, onAddToCart }) => {
             ${product.price.formatted}
           </Typography>
         </div>
+        <Link to={`/${product.permalink}`}>{product.name}</Link>
         <Typography
           dangerouslySetInnerHTML={{ __html: product.description }}
           variant="body2"

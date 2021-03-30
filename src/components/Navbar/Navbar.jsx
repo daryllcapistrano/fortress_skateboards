@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
 import useStyles from './styles';
@@ -9,7 +9,7 @@ import useStyles from './styles';
 const PrimarySearchAppBar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
-  const location = useLocation();
+  // const location = useLocation();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -42,19 +42,19 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/" variant="h1" className={classes.title} color="inherit">
+          <Typography component={Link} to="/" variant="h5" className={classes.title} color="inherit">
             <img src={logo} alt="Fortress Skateboards" height="48px" className={classes.image} /> Fortress Skateboards
           </Typography>
           <div className={classes.grow} />
-          {location.pathname === '/' && (
-            <div className={classes.button}>
-              <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                <Badge badgeContent={totalItems} color="secondary">
-                  <ShoppingCart />
-                </Badge>
-              </IconButton>
-            </div>
-          )}
+          {/* {location.pathname === '/' && ( */}
+          <div className={classes.button}>
+            <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+              <Badge badgeContent={totalItems} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </div>
+          {/* )} */}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
