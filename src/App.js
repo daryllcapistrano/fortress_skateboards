@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ScrollToTop from './hooks/useScrollToTop';
 
 import { Navbar, Products, Cart, Checkout, ProductDetails } from './components';
 import { commerce } from './lib/commerce';
@@ -73,6 +74,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
@@ -97,7 +99,7 @@ const App = () => {
             </Route>
           </Switch>
         </main>
-        <footer style={{ position: `fixed`, bottom: `0` }}>
+        <footer style={{ height: `300px`, backgroundColor: `grey`, marginTop: `2em` }}>
           <div>contact info</div>
         </footer>
       </div>

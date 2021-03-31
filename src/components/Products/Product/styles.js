@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
     maxWidth: '100%',
     position: 'relative',
     borderRadius: 0,
-    marginBottom: '4em',
+    marginBottom: theme.spacing(2),
     '&:hover': {
       '& $media': {
         opacity: 0.3,
@@ -29,22 +29,26 @@ export default makeStyles((theme) => ({
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+    justifyContent: 'space-between',
+    padding: theme.spacing(2),
   },
   cardContent: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingTop: '0',
+    paddingBottom: '0',
   },
   productName: {
-    fontSize: 32,
+    fontSize: '48px',
     fontWeight: 700,
+    alignSelf: 'flex-start',
+    marginBottom: '0',
   },
   productPrice: {
-    fontSize: 32,
+    fontSize: '32px',
     fontWeight: 700,
+    alignSelf: 'flex-start',
   },
   overlay: {
     display: 'none',
