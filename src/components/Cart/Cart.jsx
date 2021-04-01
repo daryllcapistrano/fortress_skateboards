@@ -71,7 +71,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <Container>
       <div className={classes.toolbar} />
       <div className={classes.navigation}>
-        <Button component={Link} onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
+        <Button onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
           back
         </Button>
       </div>

@@ -1,6 +1,17 @@
 import React from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { Card, CardContent, CardActions, Typography, CircularProgress, Button } from '@material-ui/core';
+import { useForm, FormProvider } from 'react-hook-form';
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  CircularProgress,
+  Button,
+} from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
@@ -8,16 +19,20 @@ import useStyles from './styles';
 
 const ProductDetails = ({ products, onAddToCart }) => {
   const { permalink } = useParams();
-  const product = products.find((prod) => prod.permalink === permalink);
-
   const classes = useStyles();
-  const handleAddToCart = () => onAddToCart(product.id, 1);
-
   const history = useHistory();
+  const methods = useForm();
 
   const goBack = () => {
     history.goBack();
   };
+
+  const product = products.find((prod) => prod.permalink === permalink);
+  const options = product.variant_groups[0].options;
+  const handleAddToCart = () => onAddToCart(product.id, 1);
+
+  console.log(product);
+  console.log(options);
 
   if (!products.length)
     return (
@@ -33,7 +48,7 @@ const ProductDetails = ({ products, onAddToCart }) => {
       {product && (
         <div className={classes.content}>
           <div className={classes.navigation}>
-            <Button component={Link} onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
+            <Button onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
               back
             </Button>
           </div>
@@ -57,6 +72,16 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 component="p"
               />
             </CardContent>
+            <FormProvider {...methods}>
+              <InputLabel>select size</InputLabel>
+              <Select fullWidth>
+                {options.map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormProvider>
             <CardActions disableSpacing className={classes.cardActions}>
               <Button component={Link} to="/cart" startIcon={<AddShoppingCart />} aria-label="Add to Cart">
                 checkout
