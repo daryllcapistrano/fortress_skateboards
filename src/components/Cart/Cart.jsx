@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Typography, Button, Grid } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
@@ -12,14 +13,19 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderEmptyCart = () => (
     <Typography variant="subtitle1">
-      You have no items in your shopping cart,
-      <Link className={classes.link} to="/">
+      No items in your shopping cart :(
+      {/* <Link className={classes.link} to="/">
         {' '}
         start adding some
-      </Link>
-      !
+      </Link> */}
     </Typography>
   );
+
+  const history = useHistory();
+
+  const goBack = () => {
+    history.goBack();
+  };
 
   if (!cart.line_items) return 'Loading';
 
@@ -64,7 +70,12 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   return (
     <Container>
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>
+      <div className={classes.navigation}>
+        <Button component={Link} onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
+          back
+        </Button>
+      </div>
+      <Typography className={classes.title} variant="h1" gutterBottom>
         Your Shopping Cart
       </Typography>
       {!cart.line_items.length ? renderEmptyCart() : renderCart()}

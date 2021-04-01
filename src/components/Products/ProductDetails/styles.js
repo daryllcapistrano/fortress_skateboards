@@ -6,25 +6,25 @@ export default makeStyles((theme) => ({
     position: 'relative',
     borderRadius: 0,
     marginBottom: '4em',
-    top: theme.spacing(6),
   },
+  navigation: {
+    marginTop: theme.spacing(4),
+  },
+
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
     marginTop: theme.spacing(3),
-    height: '100vh',
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: 'auto',
+    width: '100%',
+    // paddingTop: '56.25%', // 16:9
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+    justifyContent: 'space-between',
   },
   cardContent: {
     display: 'flex',

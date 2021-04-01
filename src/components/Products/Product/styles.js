@@ -8,18 +8,8 @@ export default makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     '&:hover': {
       '& $media': {
-        opacity: 0.3,
+        opacity: 0.6,
         transition: '0.5s ease-in-out',
-      },
-      '& $overlay': {
-        display: 'initial',
-        transition: '0.5s ease-in-out',
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      '& $overlay': {
-        display: 'initial',
-        position: 'initial',
       },
     },
   },
@@ -27,10 +17,15 @@ export default makeStyles((theme) => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  link: {
+    textDecoration: 'none',
+  },
   cardActions: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: theme.spacing(2),
+    position: 'absolute',
+    bottom: '0',
+    right: '0',
   },
   cardContent: {
     display: 'flex',
@@ -49,14 +44,6 @@ export default makeStyles((theme) => ({
     fontSize: '32px',
     fontWeight: 700,
     alignSelf: 'flex-start',
-  },
-  overlay: {
-    display: 'none',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    textAlign: 'center',
-    width: '100%',
+    marginLeft: theme.spacing(0.5),
   },
 }));

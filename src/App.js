@@ -3,7 +3,7 @@ import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './hooks/useScrollToTop';
 
-import { Navbar, Products, Cart, Checkout, ProductDetails } from './components';
+import { Navbar, Footer, Products, Cart, Checkout, ProductDetails } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -99,9 +99,7 @@ const App = () => {
             </Route>
           </Switch>
         </main>
-        <footer style={{ height: `300px`, backgroundColor: `grey`, marginTop: `2em` }}>
-          <div>contact info</div>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );

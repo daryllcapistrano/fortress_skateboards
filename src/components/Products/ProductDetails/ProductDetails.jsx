@@ -1,7 +1,8 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { Card, CardContent, CardActions, Typography, CircularProgress, Button } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 import useStyles from './styles';
 
@@ -10,25 +11,45 @@ const ProductDetails = ({ products, onAddToCart }) => {
   const product = products.find((prod) => prod.permalink === permalink);
 
   const classes = useStyles();
-
   const handleAddToCart = () => onAddToCart(product.id, 1);
+
+  const history = useHistory();
+
+  const goBack = () => {
+    history.goBack();
+  };
+
+  if (!products.length)
+    return (
+      <div style={{ height: `100vh`, position: `relative` }}>
+        <div style={{ position: ` absolute`, top: `50%`, left: `50%`, transform: `translate(-50%, -50%)` }}>
+          <CircularProgress color="secondary" />
+        </div>
+      </div>
+    );
 
   return (
     <>
       {product && (
         <div className={classes.content}>
+          <div className={classes.navigation}>
+            <Button component={Link} onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
+              back
+            </Button>
+          </div>
           <Card className={classes.root} elevation={0}>
-            <CardMedia className={classes.media} image={product.media.source} title={product.name} />
+            {product.assets.map((asset) => (
+              <img key={asset.id} className={classes.media} src={asset.url} alt={asset.filename} />
+            ))}
             <CardContent>
               <div className={classes.cardContent}>
                 <Typography gutterBottom className={classes.productName} variant="h5" component="h2">
                   {product.name}
                 </Typography>
                 <Typography gutterBottom className={classes.productPrice} variant="h5" component="h2">
-                  ${product.price.formatted}
+                  ${product.price.raw}
                 </Typography>
               </div>
-              <Link to={`/${product.permalink}`}>{product.name}</Link>
               <Typography
                 dangerouslySetInnerHTML={{ __html: product.description }}
                 variant="body2"
@@ -37,9 +58,12 @@ const ProductDetails = ({ products, onAddToCart }) => {
               />
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-              <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
-                <AddShoppingCart />
-              </IconButton>
+              <Button component={Link} to="/cart" startIcon={<AddShoppingCart />} aria-label="Add to Cart">
+                checkout
+              </Button>
+              <Button startIcon={<AddShoppingCart />} aria-label="Add to Cart" onClick={handleAddToCart}>
+                add to cart
+              </Button>
             </CardActions>
           </Card>
         </div>
