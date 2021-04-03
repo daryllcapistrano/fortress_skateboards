@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import {
-  InputLabel,
   Select,
   MenuItem,
   Card,
@@ -11,6 +10,7 @@ import {
   Typography,
   CircularProgress,
   Button,
+  InputLabel,
 } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
@@ -18,6 +18,9 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import useStyles from './styles';
 
 const ProductDetails = ({ products, onAddToCart }) => {
+  const [sizeSelect, setSizeSelect] = useState('');
+  // const [arguement, setArguement] = useState({ variant_id: '', option_id: '' });
+
   const { permalink } = useParams();
   const classes = useStyles();
   const history = useHistory();
@@ -27,12 +30,25 @@ const ProductDetails = ({ products, onAddToCart }) => {
     history.goBack();
   };
 
+  //* find product from permalink, currently loses data on refresh
   const product = products.find((prod) => prod.permalink === permalink);
-  const options = product.variant_groups[0].options;
-  const handleAddToCart = () => onAddToCart(product.id, 1);
 
-  console.log(product);
-  console.log(options);
+  //* retrieve options, currently breaks due to above
+  const options = product.variant_groups[0].options;
+
+  // ! experimental: trying to add product size to cart
+
+  const variantGroupId = product.variant_groups[0].id;
+
+  console.log(products);
+
+  const handleAddToCart = () => onAddToCart(product.id, 1, { [variantGroupId]: sizeSelect });
+
+  const handleChange = (e) => {
+    setSizeSelect(e.target.value);
+  };
+
+  // ! end experimental
 
   if (!products.length)
     return (
@@ -71,16 +87,21 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 color="textSecondary"
                 component="p"
               />
+              <div style={{ height: `100px` }}>{sizeSelect}</div>
             </CardContent>
             <FormProvider {...methods}>
-              <InputLabel>select size</InputLabel>
-              <Select fullWidth>
-                {options.map((item) => (
-                  <MenuItem key={item.id} value={item.id}>
-                    {item.name}
-                  </MenuItem>
-                ))}
-              </Select>
+              <form>
+                <Select fullWidth value={sizeSelect} onChange={handleChange}>
+                  <InputLabel value="" disabled>
+                    Choose A Size
+                  </InputLabel>
+                  {options.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </form>
             </FormProvider>
             <CardActions disableSpacing className={classes.cardActions}>
               <Button component={Link} to="/cart" startIcon={<AddShoppingCart />} aria-label="Add to Cart">

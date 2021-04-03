@@ -10,8 +10,6 @@ const Product = ({ product, onAddToCart }) => {
 
   const handleAddToCart = () => onAddToCart(product.id, 1);
 
-  console.log(product);
-
   return (
     <Card className={classes.root} elevation={1}>
       <Link to={`/${product.permalink}`} aria-label="go to details page" className={classes.link}>

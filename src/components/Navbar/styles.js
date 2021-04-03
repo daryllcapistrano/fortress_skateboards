@@ -10,8 +10,8 @@ export default makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    backgroundColor: '#121212',
-    color: '#F0F0F0',
+    backgroundColor: '#f0f0f0',
+    color: '#000000',
   },
   title: {
     flexGrow: 1,
@@ -22,6 +22,8 @@ export default makeStyles((theme) => ({
     fontWeight: 'bold',
     textTransform: 'uppercase',
     padding: '.25em 0',
+    lineHeight: '1',
+    textAlign: 'center',
   },
   image: {
     marginRight: '10px',

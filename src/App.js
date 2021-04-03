@@ -15,7 +15,6 @@ const App = () => {
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
     setProducts(data);
   };
 
@@ -23,42 +22,35 @@ const App = () => {
     setCart(await commerce.cart.retrieve());
   };
 
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-
+  const handleAddToCart = async (productId, quantity, options) => {
+    const item = await commerce.cart.add(productId, quantity, options);
     setCart(item.cart);
   };
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
     const response = await commerce.cart.update(lineItemId, { quantity });
-
     setCart(response.cart);
   };
 
   const handleRemoveFromCart = async (lineItemId) => {
     const response = await commerce.cart.remove(lineItemId);
-
     setCart(response.cart);
   };
 
   const handleEmptyCart = async () => {
     const response = await commerce.cart.empty();
-
     setCart(response.cart);
   };
 
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
-
     setCart(newCart);
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
-
       setOrder(incomingOrder);
-
       refreshCart();
     } catch (error) {
       setErrorMessage(error.data.error.message);
@@ -68,7 +60,10 @@ const App = () => {
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(cart);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
