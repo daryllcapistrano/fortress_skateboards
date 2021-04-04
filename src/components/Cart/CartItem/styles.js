@@ -1,18 +1,22 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   media: {
     height: 260,
   },
+  cartItem: {
+    width: '100%',
+    maxWidth: `600px`,
+  },
+
   cardContent: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
   },
   cartActions: {
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   buttons: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    // alignItems: 'center',
   },
 }));

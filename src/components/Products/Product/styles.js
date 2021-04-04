@@ -4,14 +4,6 @@ export default makeStyles((theme) => ({
   root: {
     maxWidth: '100%',
     position: 'relative',
-    borderRadius: 0,
-    marginBottom: theme.spacing(2),
-    '&:hover': {
-      '& $media': {
-        opacity: 0.6,
-        transition: '0.5s ease-in-out',
-      },
-    },
   },
   media: {
     height: 0,
@@ -29,10 +21,8 @@ export default makeStyles((theme) => ({
   },
   cardContent: {
     display: 'flex',
-    flexDirection: 'column',
+
     justifyContent: 'space-between',
-    paddingTop: '0',
-    paddingBottom: '0',
   },
   productName: {
     fontSize: '48px',

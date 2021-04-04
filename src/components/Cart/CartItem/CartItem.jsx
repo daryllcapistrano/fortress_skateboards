@@ -3,35 +3,47 @@ import { Typography, Button, Card, CardActions, CardContent, CardMedia } from '@
 
 import useStyles from './styles';
 
-const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
+const CartItem = ({ item, onUpdateCartQty }) => {
   const classes = useStyles();
 
   const handleUpdateCartQty = (lineItemId, newQuantity) => onUpdateCartQty(lineItemId, newQuantity);
 
-  const handleRemoveFromCart = (lineItemId) => onRemoveFromCart(lineItemId);
+  // const handleRemoveFromCart = (lineItemId) => onRemoveFromCart(lineItemId);
 
   return (
-    <Card className="cart-item">
+    <Card className={classes.cartItem}>
       <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
       <CardContent className={classes.cardContent}>
-        <Typography variant="h4">{item.name}</Typography>
-        <Typography variant="h5">{item.line_total.formatted_with_symbol}</Typography>
-        <Typography variant="h6">{item.selected_options[0].option_name}</Typography>
+        <Typography variant="h4" style={{ paddingLeft: `.5em` }}>
+          {item.name}
+        </Typography>
+        {item.selected_options.length > 0 && (
+          <Typography variant="h5" color="textSecondary" style={{ marginLeft: `.75em`, alignSelf: `center` }}>
+            {' '}
+            size: {item.selected_options[0].option_name}
+          </Typography>
+        )}
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cartActions}>
         <div className={classes.buttons}>
           <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}>
             -
           </Button>
-          <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+          <div>
+            <div>qty.</div>
+            <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+          </div>
 
           <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}>
             +
           </Button>
         </div>
-        <Button variant="contained" type="button" color="secondary" onClick={() => handleRemoveFromCart(item.id)}>
+        <Typography variant="h6" style={{ paddingRight: `.25em` }}>
+          {item.line_total.formatted_with_symbol}
+        </Typography>
+        {/* <Button variant="contained" type="button" color="secondary" onClick={() => handleRemoveFromCart(item.id)}>
           Remove
-        </Button>
+        </Button> */}
       </CardActions>
     </Card>
   );

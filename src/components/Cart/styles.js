@@ -20,14 +20,17 @@ export default makeStyles((theme) => ({
   },
   checkoutButton: {
     minWidth: '150px',
+    maxWidth: '600px',
+    marginTop: theme.spacing(4),
+    backgroundColor: 'black',
   },
   link: {
     textDecoration: 'none',
   },
   cardDetails: {
     display: 'flex',
+    flexDirection: 'column',
     marginTop: '10%',
     width: '100%',
-    justifyContent: 'space-between',
   },
 }));

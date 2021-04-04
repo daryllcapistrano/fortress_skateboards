@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
     maxWidth: '100%',
     position: 'relative',
     borderRadius: 0,
-    marginBottom: '4em',
+    margin: 'auto',
+    width: '600px',
   },
   navigation: {
     marginTop: theme.spacing(4),
@@ -24,7 +25,12 @@ export default makeStyles((theme) => ({
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  button: {
+    color: 'white',
+    backgroundColor: 'black',
+    marginBottom: theme.spacing(2),
   },
   cardContent: {
     display: 'flex',

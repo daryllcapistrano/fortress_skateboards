@@ -4,6 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import {
   Select,
   MenuItem,
+  Grid,
   Card,
   CardContent,
   CardActions,
@@ -12,43 +13,32 @@ import {
   Button,
   InputLabel,
 } from '@material-ui/core';
-import { AddShoppingCart } from '@material-ui/icons';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { AddShoppingCart, ShoppingCart, KeyboardBackspace } from '@material-ui/icons';
 
 import useStyles from './styles';
 
 const ProductDetails = ({ products, onAddToCart }) => {
   const [sizeSelect, setSizeSelect] = useState('');
-  // const [arguement, setArguement] = useState({ variant_id: '', option_id: '' });
-
-  const { permalink } = useParams();
   const classes = useStyles();
   const history = useHistory();
   const methods = useForm();
+
+  let { permalink } = useParams();
 
   const goBack = () => {
     history.goBack();
   };
 
-  //* find product from permalink, currently loses data on refresh
+  // find product from permalink, currently loses data on refresh
   const product = products.find((prod) => prod.permalink === permalink);
-
-  //* retrieve options, currently breaks due to above
   const options = product.variant_groups[0].options;
-
-  // ! experimental: trying to add product size to cart
-
   const variantGroupId = product.variant_groups[0].id;
-
-  console.log(products);
 
   const handleAddToCart = () => onAddToCart(product.id, 1, { [variantGroupId]: sizeSelect });
 
   const handleChange = (e) => {
     setSizeSelect(e.target.value);
   };
-
-  // ! end experimental
 
   if (!products.length)
     return (
@@ -64,14 +54,18 @@ const ProductDetails = ({ products, onAddToCart }) => {
       {product && (
         <div className={classes.content}>
           <div className={classes.navigation}>
-            <Button onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
+            <Button onClick={goBack} startIcon={<KeyboardBackspace />}>
               back
             </Button>
           </div>
           <Card className={classes.root} elevation={0}>
-            {product.assets.map((asset) => (
-              <img key={asset.id} className={classes.media} src={asset.url} alt={asset.filename} />
-            ))}
+            <Grid container spacing={1}>
+              {product.assets.map((asset) => (
+                <Grid item xs={4} key={asset.id}>
+                  <img className={classes.media} src={asset.url} alt={asset.filename} />
+                </Grid>
+              ))}
+            </Grid>
             <CardContent>
               <div className={classes.cardContent}>
                 <Typography gutterBottom className={classes.productName} variant="h5" component="h2">
@@ -87,14 +81,11 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 color="textSecondary"
                 component="p"
               />
-              <div style={{ height: `100px` }}>{sizeSelect}</div>
             </CardContent>
             <FormProvider {...methods}>
-              <form>
+              <form style={{ padding: `1em` }}>
+                <InputLabel id="size-select-label">*Choose A Size (required)</InputLabel>
                 <Select fullWidth value={sizeSelect} onChange={handleChange}>
-                  <InputLabel value="" disabled>
-                    Choose A Size
-                  </InputLabel>
                   {options.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
@@ -104,11 +95,26 @@ const ProductDetails = ({ products, onAddToCart }) => {
               </form>
             </FormProvider>
             <CardActions disableSpacing className={classes.cardActions}>
-              <Button component={Link} to="/cart" startIcon={<AddShoppingCart />} aria-label="Add to Cart">
-                checkout
-              </Button>
-              <Button startIcon={<AddShoppingCart />} aria-label="Add to Cart" onClick={handleAddToCart}>
+              <Button
+                startIcon={<AddShoppingCart />}
+                aria-label="Add to Cart"
+                onClick={handleAddToCart}
+                variant="contained"
+                fullWidth
+                className={classes.button}
+              >
                 add to cart
+              </Button>
+              <Button
+                component={Link}
+                to="/cart"
+                startIcon={<ShoppingCart />}
+                aria-label="Add to Cart"
+                variant="contained"
+                fullWidth
+                className={classes.button}
+              >
+                checkout
               </Button>
             </CardActions>
           </Card>

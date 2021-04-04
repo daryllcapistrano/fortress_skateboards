@@ -3,6 +3,8 @@ import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@materia
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
+import useStyles from './styles';
+
 import { commerce } from '../../lib/commerce';
 import FormInput from './CustomTextField';
 
@@ -14,6 +16,8 @@ const AddressForm = ({ checkoutToken, test }) => {
   const [shippingOptions, setShippingOptions] = useState([]);
   const [shippingOption, setShippingOption] = useState('');
   const methods = useForm();
+
+  const classes = useStyles();
 
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
@@ -106,7 +110,7 @@ const AddressForm = ({ checkoutToken, test }) => {
             <Button component={Link} variant="outlined" to="/cart">
               Back to Cart
             </Button>
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" className={classes.button}>
               Next
             </Button>
           </div>

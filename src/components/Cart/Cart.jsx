@@ -6,18 +6,18 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
 
-const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
   const classes = useStyles();
 
-  const handleEmptyCart = () => onEmptyCart();
+  // const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => (
     <Typography variant="subtitle1">
       No items in your shopping cart :(
-      {/* <Link className={classes.link} to="/">
+      <Link className={classes.link} to="/">
         {' '}
-        start adding some
-      </Link> */}
+        go back to products page
+      </Link>
     </Typography>
   );
 
@@ -33,7 +33,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.id}>
+          <Grid item xs={12} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
@@ -42,16 +42,6 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
         <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
         <div>
           <Button
-            className={classes.emptyButton}
-            size="large"
-            type="button"
-            variant="contained"
-            color="secondary"
-            onClick={handleEmptyCart}
-          >
-            Empty cart
-          </Button>
-          <Button
             className={classes.checkoutButton}
             component={Link}
             to="/checkout"
@@ -59,6 +49,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
             type="button"
             variant="contained"
             color="primary"
+            fullWidth
           >
             Checkout
           </Button>
