@@ -2,6 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   title: {
     marginTop: '5%',
     fontSize: '2.25em',
@@ -23,6 +27,7 @@ export default makeStyles((theme) => ({
     maxWidth: '600px',
     marginTop: theme.spacing(4),
     backgroundColor: 'black',
+    color: 'white',
   },
   link: {
     textDecoration: 'none',

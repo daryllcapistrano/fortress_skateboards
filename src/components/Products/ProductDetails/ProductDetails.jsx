@@ -61,7 +61,7 @@ const ProductDetails = ({ products, onAddToCart }) => {
           <Card className={classes.root} elevation={0}>
             <Grid container spacing={1}>
               {product.assets.map((asset) => (
-                <Grid item xs={4} key={asset.id}>
+                <Grid item xs={12} key={asset.id}>
                   <img className={classes.media} src={asset.url} alt={asset.filename} />
                 </Grid>
               ))}

@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, { quantity });
+    const response = await commerce.cart.update(lineItemId, quantity);
     setCart(response.cart);
   };
 
@@ -62,8 +62,6 @@ const App = () => {
     fetchCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(cart);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 

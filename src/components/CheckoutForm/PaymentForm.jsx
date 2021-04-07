@@ -8,23 +8,23 @@ import Review from './Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const CARD_ELEMENT_OPTIONS = {
-  style: {
-    base: {
-      color: '#32325d',
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4',
-      },
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a',
-    },
-  },
-};
+// const CARD_ELEMENT_OPTIONS = {
+//   style: {
+//     base: {
+//       color: '#32325d',
+//       fontFamily: '"Chivo"',
+//       fontSmoothing: 'antialiased',
+//       fontSize: '16px',
+//       '::placeholder': {
+//         color: '#aab7c4',
+//       },
+//     },
+//     invalid: {
+//       color: '#fa755a',
+//       iconColor: '#fa755a',
+//     },
+//   },
+// };
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
   const classes = useStyles();
@@ -78,7 +78,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
         <ElementsConsumer>
           {({ elements, stripe }) => (
             <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
-              <CardElement options={CARD_ELEMENT_OPTIONS} />
+              <CardElement />
               <br /> <br />
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="outlined" onClick={backStep}>

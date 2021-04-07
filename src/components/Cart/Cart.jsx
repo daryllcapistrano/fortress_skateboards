@@ -30,7 +30,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
   if (!cart.line_items) return 'Loading';
 
   const renderCart = () => (
-    <>
+    <div className={classes.root}>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
           <Grid item xs={12} key={lineItem.id}>
@@ -48,14 +48,13 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
             size="large"
             type="button"
             variant="contained"
-            color="primary"
             fullWidth
           >
             Checkout
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 
   return (
