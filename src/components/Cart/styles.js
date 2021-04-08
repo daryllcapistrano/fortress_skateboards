@@ -1,17 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    marginTop: theme.spacing(8),
+  },
+  wrapper: {
+    maxWidth: '100%',
+    position: 'relative',
+    borderRadius: 0,
+    margin: 'auto',
+    width: '600px',
   },
   title: {
-    marginTop: '5%',
     fontSize: '2.25em',
+    paddingLeft: theme.spacing(2),
   },
   navigation: {
-    marginTop: theme.spacing(4),
+    // marginTop: theme.spacing(4),
   },
   emptyButton: {
     minWidth: '150px',
@@ -37,5 +42,6 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     marginTop: '10%',
     width: '100%',
+    padding: '2em',
   },
 }));

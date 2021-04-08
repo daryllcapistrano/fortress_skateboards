@@ -9,8 +9,8 @@ const Products = ({ products, onAddToCart }) => {
 
   if (!products.length)
     return (
-      <div style={{ height: `100vh`, position: `relative` }}>
-        <div style={{ position: ` absolute`, top: `50%`, left: `50%`, transform: `translate(-50%, -50%)` }}>
+      <div className={classes.wrapper}>
+        <div className={classes.innerWrapper}>
           <CircularProgress color="secondary" />
         </div>
       </div>
@@ -18,8 +18,7 @@ const Products = ({ products, onAddToCart }) => {
 
   return (
     <div className={classes.content}>
-      <div className={classes.toolbar} />
-      <Grid container spacing={2}>
+      <Grid container>
         {products.map((product) => (
           <Grid key={product.id} item xs={12} sm={6} md={4}>
             <Product product={product} onAddToCart={onAddToCart} />

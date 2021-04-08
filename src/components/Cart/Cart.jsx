@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
@@ -30,7 +30,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
   if (!cart.line_items) return 'Loading';
 
   const renderCart = () => (
-    <div className={classes.root}>
+    <div className={classes.wrapper}>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
           <Grid item xs={12} key={lineItem.id}>
@@ -58,18 +58,19 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
   );
 
   return (
-    <Container>
-      <div className={classes.toolbar} />
+    <div className={classes.root}>
       <div className={classes.navigation}>
         <Button onClick={goBack} startIcon={<KeyboardBackspaceIcon />}>
           back
         </Button>
       </div>
-      <Typography className={classes.title} variant="h1" gutterBottom>
-        Your Shopping Cart
-      </Typography>
-      {!cart.line_items.length ? renderEmptyCart() : renderCart()}
-    </Container>
+      <div className={classes.wrapper}>
+        <Typography className={classes.title} variant="h1" gutterBottom>
+          Your Shopping Cart
+        </Typography>
+        {!cart.line_items.length ? renderEmptyCart() : renderCart()}
+      </div>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ export default makeStyles(() => ({
   cartItem: {
     width: '100%',
     maxWidth: `600px`,
+    borderRadius: '0',
   },
 
   cardContent: {

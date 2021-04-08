@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
+    minHeight: '66vh',
   },
   main: {
     marginTop: theme.spacing(8),

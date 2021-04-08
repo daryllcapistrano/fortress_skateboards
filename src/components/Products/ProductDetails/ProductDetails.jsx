@@ -66,8 +66,8 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 </Grid>
               ))}
             </Grid>
-            <CardContent>
-              <div className={classes.cardContent}>
+            <CardContent className={classes.cardContent}>
+              <div>
                 <Typography gutterBottom className={classes.productName} variant="h5" component="h2">
                   {product.name}
                 </Typography>
@@ -75,15 +75,17 @@ const ProductDetails = ({ products, onAddToCart }) => {
                   ${product.price.raw}
                 </Typography>
               </div>
-              <Typography
-                dangerouslySetInnerHTML={{ __html: product.description }}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              />
+              <div style={{ paddingLeft: `1em` }}>
+                <Typography
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                />
+              </div>
             </CardContent>
             <FormProvider {...methods}>
-              <form style={{ padding: `1em` }}>
+              <form style={{ padding: `2em` }}>
                 <InputLabel id="size-select-label">*Choose A Size (required)</InputLabel>
                 <Select fullWidth value={sizeSelect} onChange={handleChange}>
                   {options.map((item) => (
@@ -109,12 +111,12 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 component={Link}
                 to="/cart"
                 startIcon={<ShoppingCart />}
-                aria-label="Add to Cart"
+                aria-label="Go to Cart"
                 variant="contained"
                 fullWidth
                 className={classes.button}
               >
-                checkout
+                go to cart
               </Button>
             </CardActions>
           </Card>

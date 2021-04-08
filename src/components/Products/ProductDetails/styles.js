@@ -9,13 +9,12 @@ export default makeStyles((theme) => ({
     width: '600px',
   },
   navigation: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(8),
   },
 
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
     marginTop: theme.spacing(3),
   },
   media: {
@@ -26,6 +25,7 @@ export default makeStyles((theme) => ({
   cardActions: {
     display: 'flex',
     flexDirection: 'column',
+    padding: '2em',
   },
   button: {
     color: 'white',

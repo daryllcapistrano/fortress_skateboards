@@ -4,10 +4,12 @@ export default makeStyles((theme) => ({
   root: {
     maxWidth: '100%',
     position: 'relative',
+    borderRadius: '0',
+    marginTop: theme.spacing(2),
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: '333px',
+    // paddingTop: '56.25%', // 16:9
   },
   link: {
     textDecoration: 'none',
@@ -21,11 +23,10 @@ export default makeStyles((theme) => ({
   },
   cardContent: {
     display: 'flex',
-
     justifyContent: 'space-between',
   },
   productName: {
-    fontSize: '48px',
+    fontSize: '3em',
     fontWeight: 700,
     alignSelf: 'flex-start',
     marginBottom: '0',
