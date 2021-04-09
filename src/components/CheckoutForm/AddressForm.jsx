@@ -69,8 +69,13 @@ const AddressForm = ({ checkoutToken, test }) => {
             <FormInput required name="city" label="City" />
             <FormInput required name="zip" label="Zip / Postal code" />
             <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Country</InputLabel>
-              <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
+              <InputLabel shrink={true}>Country</InputLabel>
+              <Select
+                value={shippingCountry}
+                fullWidth
+                onChange={(e) => setShippingCountry(e.target.value)}
+                variant="outlined"
+              >
                 {Object.entries(shippingCountries)
                   .map(([code, name]) => ({ id: code, label: name }))
                   .map((item) => (
@@ -81,8 +86,13 @@ const AddressForm = ({ checkoutToken, test }) => {
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Subdivision</InputLabel>
-              <Select value={shippingSubdivision} fullWidth onChange={(e) => setShippingSubdivision(e.target.value)}>
+              <InputLabel shrink={true}>State</InputLabel>
+              <Select
+                value={shippingSubdivision}
+                fullWidth
+                onChange={(e) => setShippingSubdivision(e.target.value)}
+                variant="outlined"
+              >
                 {Object.entries(shippingSubdivisions)
                   .map(([code, name]) => ({ id: code, label: name }))
                   .map((item) => (
@@ -93,8 +103,13 @@ const AddressForm = ({ checkoutToken, test }) => {
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Options</InputLabel>
-              <Select value={shippingOption} fullWidth onChange={(e) => setShippingOption(e.target.value)}>
+              <InputLabel shrink={true}>Shipping Option</InputLabel>
+              <Select
+                value={shippingOption}
+                fullWidth
+                onChange={(e) => setShippingOption(e.target.value)}
+                variant="outlined"
+              >
                 {shippingOptions
                   .map((sO) => ({ id: sO.id, label: `${sO.description} - (${sO.price.formatted_with_symbol})` }))
                   .map((item) => (
@@ -110,7 +125,7 @@ const AddressForm = ({ checkoutToken, test }) => {
             <Button component={Link} variant="outlined" to="/cart">
               Back to Cart
             </Button>
-            <Button type="submit" variant="contained" className={classes.button}>
+            <Button type="submit" variant="contained" color="primary" className={classes.button}>
               Next
             </Button>
           </div>

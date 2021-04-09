@@ -24,17 +24,16 @@ export default makeStyles((theme) => ({
   cardContent: {
     display: 'flex',
     justifyContent: 'space-between',
+    padding: theme.spacing(1),
   },
   productName: {
-    fontSize: '3em',
     fontWeight: 700,
-    alignSelf: 'flex-start',
     marginBottom: '0',
+    marginLeft: theme.spacing(1),
+    letterSpacing: theme.spacing(0.5),
   },
   productPrice: {
-    fontSize: '32px',
     fontWeight: 700,
-    alignSelf: 'flex-start',
-    marginLeft: theme.spacing(0.5),
+    marginBottom: theme.spacing(4),
   },
 }));

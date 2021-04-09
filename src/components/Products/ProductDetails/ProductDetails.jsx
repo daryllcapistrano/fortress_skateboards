@@ -12,8 +12,9 @@ import {
   CircularProgress,
   Button,
   InputLabel,
+  Divider,
 } from '@material-ui/core';
-import { AddShoppingCart, ShoppingCart, KeyboardBackspace } from '@material-ui/icons';
+import { KeyboardBackspace } from '@material-ui/icons';
 
 import useStyles from './styles';
 
@@ -71,7 +72,7 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 <Typography gutterBottom className={classes.productName} variant="h5" component="h2">
                   {product.name}
                 </Typography>
-                <Typography gutterBottom className={classes.productPrice} variant="h5" component="h2">
+                <Typography gutterBottom className={classes.productPrice} variant="h5" component="h2" color="textSecondary">
                   ${product.price.raw}
                 </Typography>
               </div>
@@ -84,10 +85,13 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 />
               </div>
             </CardContent>
+            <Divider />
             <FormProvider {...methods}>
-              <form style={{ padding: `2em` }}>
-                <InputLabel id="size-select-label">*Choose A Size (required)</InputLabel>
-                <Select fullWidth value={sizeSelect} onChange={handleChange}>
+              <form style={{ padding: `1.25em`, marginBottom: '1em' }}>
+                <InputLabel id="size-select-label" shrink={true}>
+                  *Choose A Size (required)
+                </InputLabel>
+                <Select fullWidth value={sizeSelect} onChange={handleChange} variant="outlined">
                   {options.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
@@ -96,12 +100,13 @@ const ProductDetails = ({ products, onAddToCart }) => {
                 </Select>
               </form>
             </FormProvider>
+            <Divider />
             <CardActions disableSpacing className={classes.cardActions}>
               <Button
-                startIcon={<AddShoppingCart />}
                 aria-label="Add to Cart"
                 onClick={handleAddToCart}
                 variant="contained"
+                color="primary"
                 fullWidth
                 className={classes.button}
               >
@@ -110,9 +115,9 @@ const ProductDetails = ({ products, onAddToCart }) => {
               <Button
                 component={Link}
                 to="/cart"
-                startIcon={<ShoppingCart />}
                 aria-label="Go to Cart"
                 variant="contained"
+                color="default"
                 fullWidth
                 className={classes.button}
               >

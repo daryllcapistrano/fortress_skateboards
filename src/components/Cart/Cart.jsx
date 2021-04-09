@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid, Divider } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
@@ -31,28 +31,31 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart }) => {
 
   const renderCart = () => (
     <div className={classes.wrapper}>
-      <Grid container spacing={3}>
+      <Grid container>
         {cart.line_items.map((lineItem) => (
           <Grid item xs={12} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
       </Grid>
+      <Divider />
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
-        <div>
-          <Button
-            className={classes.checkoutButton}
-            component={Link}
-            to="/checkout"
-            size="large"
-            type="button"
-            variant="contained"
-            fullWidth
-          >
-            Checkout
-          </Button>
-        </div>
+        <Typography variant="h4" className={classes.subtotal}>
+          Subtotal: {cart.subtotal.formatted_with_symbol}
+        </Typography>
+
+        <Button
+          className={classes.checkoutButton}
+          component={Link}
+          to="/checkout"
+          size="large"
+          type="button"
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          Checkout
+        </Button>
       </div>
     </div>
   );

@@ -3,6 +3,12 @@ import { makeStyles, fade } from '@material-ui/core/styles';
 const drawerWidth = 0;
 
 export default makeStyles((theme) => ({
+  root: {
+    webkitTransition: 'all .5s ease-in-out',
+    mozTransition: 'all .5s ease-in-out',
+    oTransition: 'all .5s ease-in-out',
+    transition: 'all .5s ease-in-out',
+  },
   appBar: {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',

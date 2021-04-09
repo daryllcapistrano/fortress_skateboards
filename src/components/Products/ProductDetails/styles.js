@@ -9,13 +9,13 @@ export default makeStyles((theme) => ({
     width: '600px',
   },
   navigation: {
-    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(4),
   },
 
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0),
   },
   media: {
     height: 'auto',
@@ -25,20 +25,21 @@ export default makeStyles((theme) => ({
   cardActions: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '2em',
+    marginTop: theme.spacing(2),
+    padding: '1.25em',
   },
   button: {
-    color: 'white',
-    backgroundColor: 'black',
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   cardContent: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   productName: {
     fontSize: 40,
     fontWeight: 700,
+    letterSpacing: theme.spacing(0.5),
   },
   productPrice: {
     fontSize: 40,

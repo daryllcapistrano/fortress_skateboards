@@ -4,27 +4,29 @@ import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js
 import { loadStripe } from '@stripe/stripe-js';
 import useStyles from './styles';
 
+import stripeBlurple from '../../assets/Stripe badge/PNG/Powered by Stripe - blurple.png';
+
 import Review from './Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-// const CARD_ELEMENT_OPTIONS = {
-//   style: {
-//     base: {
-//       color: '#32325d',
-//       fontFamily: '"Chivo"',
-//       fontSmoothing: 'antialiased',
-//       fontSize: '16px',
-//       '::placeholder': {
-//         color: '#aab7c4',
-//       },
-//     },
-//     invalid: {
-//       color: '#fa755a',
-//       iconColor: '#fa755a',
-//     },
-//   },
-// };
+const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      color: '#32325d',
+      // fontFamily: '"Chivo"',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4',
+      },
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a',
+    },
+  },
+};
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
   const classes = useStyles();
@@ -71,20 +73,25 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
     <>
       <Review checkoutToken={checkoutToken} />
       <Divider />
-      <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>
-        Payment method
-      </Typography>
+      <div className={classes.payment}>
+        <Typography variant="h6" gutterBottom style={{ margin: '20px 0' }}>
+          Payment method
+        </Typography>
+        <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">
+          <img src={stripeBlurple} height="16px" alt="Fortress Skateboards" />
+        </a>
+      </div>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
           {({ elements, stripe }) => (
             <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
-              <CardElement />
+              <CardElement options={CARD_ELEMENT_OPTIONS} />
               <br /> <br />
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="outlined" onClick={backStep}>
                   Back
                 </Button>
-                <Button type="submit" variant="contained" disabled={!stripe} className={classes.button}>
+                <Button type="submit" variant="contained" color="primary" disabled={!stripe}>
                   Pay {checkoutToken.live.subtotal.formatted_with_symbol}
                 </Button>
               </div>

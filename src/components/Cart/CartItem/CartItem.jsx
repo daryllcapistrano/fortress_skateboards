@@ -14,11 +14,9 @@ const CartItem = ({ item, onUpdateCartQty }) => {
     <Card className={classes.cartItem} elevation={0}>
       <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
       <CardContent className={classes.cardContent}>
-        <Typography variant="h4" style={{ paddingLeft: `.5em` }}>
-          {item.name}
-        </Typography>
+        <Typography variant="h4">{item.name}</Typography>
         {item.selected_options.length > 0 && (
-          <Typography variant="h5" color="textSecondary" style={{ marginLeft: `.75em`, alignSelf: `center` }}>
+          <Typography variant="subtitle1" color="textSecondary">
             {' '}
             size: {item.selected_options[0].option_name}
           </Typography>
@@ -38,8 +36,8 @@ const CartItem = ({ item, onUpdateCartQty }) => {
             +
           </Button>
         </div>
-        <Typography variant="h6" style={{ paddingRight: `.25em` }}>
-          {item.line_total.formatted_with_symbol}
+        <Typography variant="subtitle2" color="textSecondary">
+          item total: {item.line_total.formatted_with_symbol}
         </Typography>
         {/* <Button variant="contained" type="button" color="secondary" onClick={() => handleRemoveFromCart(item.id)}>
           Remove
