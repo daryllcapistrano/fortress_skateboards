@@ -84,7 +84,7 @@ const App = () => {
                 onEmptyCart={handleEmptyCart}
               />
             </Route>
-            <Route path="/checkout" exact>
+            <Route exact path="/checkout">
               <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
             </Route>
             <Route exact path="/:permalink">
